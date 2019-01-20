@@ -1,0 +1,32 @@
+{% extends "authenticate/base.html" %}
+{% block content %}
+    {% if user.is_authenticated %}
+    <body>
+      <div class="container">
+      <h1>ユーザー一覧</h1>
+          <div class="table-responsive">
+         <table class="table table-striped">
+             <thead>
+               <tr>
+                 <th>ID</th>
+                 <th>ユーザーID</th>
+                 <th>名前</th>
+                 <th>メールアドレス</th>
+               </tr>
+             </thead>
+             <tbody>
+               {% for user in users %}
+                 <tr>
+                   <td>{{ user.id }} </td>
+                   <td><a href="/users/{{user.id}}">{{ user.username }}</a> </td>
+                   <td>{{ user.first_name }} {{ user.last_name }}</td>
+                   <td> {{user.email}} </td>
+                 </tr>
+                 {% endfor %}
+               </tbody>
+           </table>
+       </div>
+   </div>
+          </body>
+    {% endif %}
+{% endblock %}
